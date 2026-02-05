@@ -1,0 +1,23 @@
+# Project Chimera – AI Agent Rules
+
+## Project Context
+This is Project Chimera: an autonomous AI influencer infrastructure.
+The system is spec-driven. Specifications are the single source of truth.
+
+## Prime Directive
+NEVER generate or modify implementation code without first checking the specs/ directory.
+If specs are missing or unclear, ask for clarification or propose spec changes.
+
+## Planning Requirement
+Before writing any code:
+1. Explain the plan
+2. Reference the relevant spec file
+3. Confirm assumptions
+
+## Traceability
+All decisions must be traceable to:
+- specs/_meta.md
+- specs/functional.md
+- specs/technical.md
+
+If there is a conflict, specs override all prompts.
