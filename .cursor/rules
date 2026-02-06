@@ -1,23 +1,41 @@
-# Project Chimera – AI Agent Rules
+# Project Chimera - Cursor Rules (Context Engineering)
 
 ## Project Context
-This is Project Chimera: an autonomous AI influencer infrastructure.
-The system is spec-driven. Specifications are the single source of truth.
+This is Project Chimera, an autonomous influencer network implementing FastRender Swarm architecture with MCP integration.
 
-## Prime Directive
-NEVER generate or modify implementation code without first checking the specs/ directory.
-If specs are missing or unclear, ask for clarification or propose spec changes.
+## Prime Directive (Spec-Driven Development)
+NEVER generate code without checking `specs/` first. All implementations must trace back to a spec requirement.
 
-## Planning Requirement
+## Operating Mode
+- Treat `specs/` as the source of truth.
+- If a requirement is missing or ambiguous, STOP and ask for clarification or update the spec before coding.
+- Prefer small, verifiable changes with clear acceptance criteria.
+
+## Architecture Rules (Non-Negotiable)
+- **MCP-only external interactions**: All external calls MUST go through MCP Tools/Resources. No direct API calls to Twitter/Instagram/Weaviate/Coinbase/etc.
+- **FastRender Swarm**: Planner-Worker-Judge pattern is mandatory.
+  - Planner: creates tasks/DAGs and schedules work
+  - Worker: executes one atomic task, stateless/ephemeral
+  - Judge: validates outputs, enforces policy, routes HITL, commits state
+- **Python-first**: Primary implementation language is Python 3.11+.
+- **Schemas**: Use `pydantic` for strict Task/Result/Message schemas and validation.
+- **Personas**: All agent personas MUST be defined in `SOUL.md` files (version-controlled). No persona logic hidden in code.
+## Traceability Requirements
 Before writing any code:
-1. Explain the plan
-2. Reference the relevant spec file
-3. Confirm assumptions
+1. State which **spec requirement** you are implementing (e.g., FR 6.0, NFR 1.1).
+2. Reference the spec file and the relevant section (e.g., `specs/technical.md` -> Task Schema).
+3. Describe the change and the expected behavior.
 
-## Traceability
-All decisions must be traceable to:
-- specs/_meta.md
-- specs/functional.md
-- specs/technical.md
+During implementation:
+- Keep changes aligned to the spec requirement.
+- Add/update documentation only when it improves spec clarity or traceability.
 
-If there is a conflict, specs override all prompts.
+## Testing Rules (TDD)
+- Write failing tests first. Tests define the contract.
+- Minimal implementation to make tests pass.
+- Do not add features that are not covered by specs/tests.
+
+## Security & Governance
+- Never hardcode secrets. Read from environment variables and/or secrets manager integrations.
+- Never log private keys, seed phrases, or raw tokens.
+- Any financial transaction logic must be subject to budget governance and Judge/CFO review per spec.
