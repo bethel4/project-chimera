@@ -1,0 +1,41 @@
+{
+  "title": "WalletManagerSkillSchema",
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "object",
+      "properties": {
+        "agent_id": { "type": "string" },
+        "action": {
+          "type": "string",
+          "enum": ["get_balance", "send_payment"]
+        },
+        "to_address": { "type": "string" },
+        "amount_usdc": { "type": "number", "minimum": 0 }
+      },
+      "required": ["agent_id", "action"]
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean" },
+        "data": {
+          "type": ["object", "null"],
+          "properties": {
+            "balance_usdc": { "type": ["number", "null"] },
+            "tx_hash": { "type": ["string", "null"] }
+          }
+        },
+        "error": {
+          "type": ["object", "null"],
+          "properties": {
+            "code": { "type": "string" },
+            "message": { "type": "string" }
+          }
+        }
+      },
+      "required": ["success", "data", "error"]
+    }
+  },
+  "required": ["input", "output"]
+}

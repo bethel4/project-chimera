@@ -1,0 +1,46 @@
+{
+  "title": "ContentGeneratorSkillSchema",
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "object",
+      "properties": {
+        "agent_id": { "type": "string" },
+        "mode": {
+          "type": "string",
+          "enum": ["text", "image", "video"]
+        },
+        "prompt": { "type": "string" },
+        "persona_id": { "type": "string" },
+        "constraints": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": ["agent_id", "mode", "prompt", "persona_id"]
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean" },
+        "data": {
+          "type": ["object", "null"],
+          "properties": {
+            "text": { "type": ["string", "null"] },
+            "image_url": { "type": ["string", "null"] },
+            "video_url": { "type": ["string", "null"] }
+          }
+        },
+        "error": {
+          "type": ["object", "null"],
+          "properties": {
+            "code": { "type": "string" },
+            "message": { "type": "string" }
+          }
+        }
+      },
+      "required": ["success", "data", "error"]
+    }
+  },
+  "required": ["input", "output"]
+}
