@@ -1,0 +1,10 @@
+version: 1
+reviews:
+  profile: "chill"
+  instructions: |
+    You are reviewing Project Chimera.
+    Enforce:
+    - Spec alignment: changes must trace to specs/ files.
+    - Security: no secrets, wallet keys, API tokens. Flag risky crypto/payment logic.
+    - Architecture: no direct external API calls; MCP-only. Enforce Planner-Worker-Judge.
+    - Testing: require tests for new behavior; keep TDD.

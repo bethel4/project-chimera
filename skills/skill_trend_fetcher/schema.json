@@ -1,0 +1,54 @@
+{
+  "title": "TrendFetcherSkillSchema",
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "object",
+      "properties": {
+        "agent_id": { "type": "string" },
+        "sources": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["news", "twitter"] }
+        },
+        "niche_tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "time_window_hours": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["agent_id", "sources", "time_window_hours"]
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean" },
+        "data": {
+          "type": ["object", "null"],
+          "properties": {
+            "trends": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "topic": { "type": "string" },
+                  "score": { "type": "number" },
+                  "source": { "type": "string" }
+                },
+                "required": ["topic", "score", "source"]
+              }
+            }
+          }
+        },
+        "error": {
+          "type": ["object", "null"],
+          "properties": {
+            "code": { "type": "string" },
+            "message": { "type": "string" }
+          }
+        }
+      },
+      "required": ["success", "data", "error"]
+    }
+  },
+  "required": ["input", "output"]
+}
