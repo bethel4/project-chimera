@@ -1,6 +1,6 @@
 PYTHON := python3
 PIP := pip
-COMPOSE := docker compose
+COMPOSE := docker-compose
 
 .PHONY: setup test dev build lint spec-check
 

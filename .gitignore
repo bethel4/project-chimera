@@ -1,25 +1,33 @@
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-.venv
-*.env
-.env.local
-.DS_Store
-*.log
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-dist/
-build/
-*.egg-info/
-.coverage
-htmlcov/
+*.pyo
+*.pyd
 .pytest_cache/
 .mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# App artifacts
+uploads/
